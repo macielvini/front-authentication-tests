@@ -1,29 +1,36 @@
-import { useEffect } from "react";
-import jwt_decode from "jwt-decode";
+import { useState } from "react";
+import { GoogleLogin, googleLogout } from "@react-oauth/google";
+import jwt_decoder from "jwt-decode";
 
 function App() {
-  function handleCallBackResponse(response) {
-    let userObject = jwt_decode(response.credential);
-    console.log(userObject);
+  const [user, setUser] = useState();
+
+  function googleLogin(credential) {
+    const decoded = jwt_decoder(credential);
+    setUser(decoded);
   }
 
-  useEffect(() => {
-    /* global google */
-    google.accounts.id.initialize({
-      client_id:
-        "308158880130-kvb57ufdsgbm3905027u0enaaupa7g68.apps.googleusercontent.com",
-      callback: handleCallBackResponse,
-    });
-
-    google.accounts.id.renderButton(document.getElementById("signInDiv"), {
-      theme: "outline",
-      size: "large",
-    });
-  }, []);
+  function logOut() {
+    googleLogout();
+    setUser(null);
+  }
 
   return (
     <div className="App">
-      <div id="signInDiv"></div>
+      {user ? (
+        <div>
+          <img src={user.picture} alt="user" />
+          <h3>User info:</h3>
+          <p>Name: {user.name}</p>
+          <button onClick={logOut}>Log out</button>
+        </div>
+      ) : (
+        <GoogleLogin
+          onSuccess={(res) => googleLogin(res.credential)}
+          onError={(error) => console.log("Login failed: ", error)}
+          useOneTap={true}
+        />
+      )}
     </div>
   );
 }
