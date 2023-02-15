@@ -1,37 +1,14 @@
-import { useState } from "react";
-import { GoogleLogin, googleLogout } from "@react-oauth/google";
-import jwt_decoder from "jwt-decode";
+import SignIn from "./pages/SignIn";
+import { ThemeProvider } from "styled-components";
+import GlobalStyles from "./styles/global";
+import theme from "./styles/theme";
 
 function App() {
-  const [user, setUser] = useState();
-
-  function googleLogin(credential) {
-    const decoded = jwt_decoder(credential);
-    setUser(decoded);
-  }
-
-  function logOut() {
-    googleLogout();
-    setUser(null);
-  }
-
   return (
-    <div className="App">
-      {user ? (
-        <div>
-          <img src={user.picture} alt="user" />
-          <h3>User info:</h3>
-          <p>Name: {user.name}</p>
-          <button onClick={logOut}>Log out</button>
-        </div>
-      ) : (
-        <GoogleLogin
-          onSuccess={(res) => googleLogin(res.credential)}
-          onError={(error) => console.log("Login failed: ", error)}
-          useOneTap={true}
-        />
-      )}
-    </div>
+    <ThemeProvider theme={theme}>
+      <GlobalStyles />
+      <SignIn />
+    </ThemeProvider>
   );
 }
 
