@@ -1,8 +1,10 @@
 // eslint-disable-next-line import/no-anonymous-default-export
-export default {
+
+const theme = {
   COLORS: {
     BLUE: "#3439CD",
     WHITE: "#FFF",
+    GRAY_700: "#676F7F",
   },
 
   FONT_SIZES: {
@@ -12,3 +14,4 @@ export default {
     TEXT_SMALL: "12px",
   },
 };
+export default theme;
