@@ -5,8 +5,27 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
 
-  width: 100px;
-  height: 100px;
+  width: 100%;
+`;
 
-  /* background-color: aliceblue; */
+export const HalfContainer = styled.div`
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  flex-direction: column;
+
+  width: 50vw;
+  min-height: 100vh;
+
+  .img-container {
+    position: relative;
+    height: 100vh;
+  }
+
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 `;
