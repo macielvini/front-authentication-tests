@@ -1,5 +1,3 @@
-// eslint-disable-next-line import/no-anonymous-default-export
-
 const theme = {
   COLORS: {
     BLUE: "#3439CD",
