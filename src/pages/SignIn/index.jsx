@@ -2,7 +2,7 @@ import { useState } from "react";
 import { GoogleLogin, googleLogout } from "@react-oauth/google";
 import jwt_decoder from "jwt-decode";
 import { Container, HalfContainer } from "./styles";
-import Form from "../../components/form";
+import Form from "../../components/Form";
 
 export default function SignIn() {
   const [user, setUser] = useState();

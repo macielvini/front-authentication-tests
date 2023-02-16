@@ -21,6 +21,7 @@ export const HalfContainer = styled.div`
   .img-container {
     position: relative;
     height: 100vh;
+    width: 100%;
   }
 
   img {
